@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>善靈師姐（姻緣命理館）｜港澳專用落地頁</title>
+  <meta name="description" content="輸入姓名與出生資訊，獲取你的姻緣趨勢與相合指引。善靈師姐為你定制分析，私訊立即諮詢。">
+  <meta name="format-detection" content="telephone=no">
+  <style>
+    :root{
+      --bg:#fff7fb; --primary:#e73a9e; --primary-600:#c62983;
+      --ink:#1f2937; --muted:#6b7280; --card:#ffffff;
+      --border:#f1e5ee; --accent:#ffecf6;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+      font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC","Segoe UI",Roboto,Arial,"Microsoft JhengHei",sans-serif;line-height:1.6}
+    a{color:var(--primary);text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:960px;margin:0 auto;padding:16px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 8px 24px rgba(231,58,158,.08);overflow:hidden}
+    .hero{position:relative;padding:28px 20px;background:linear-gradient(180deg,#fff0f7,rgba(255,255,255,0));}
+    .badge{display:inline-block;padding:6px 12px;border-radius:999px;background:var(--accent);color:var(--primary-600);font-weight:600;font-size:13px;letter-spacing:.4px}
+    h1{font-size:28px;line-height:1.25;margin:12px 0 8px 0}
+    .sub{color:var(--muted);font-size:15px;margin-top:4px}
+    .hero-visual{margin-top:16px;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+    .btn{flex:1 1 240px;display:inline-flex;align-items:center;justify-content:center;padding:14px 18px;border-radius:12px;border:1px solid var(--primary);background:var(--primary);color:#fff;font-weight:700;font-size:16px;transition:.2s;cursor:pointer}
+    .btn:hover{filter:brightness(.97)}
+    .btn.secondary{background:#fff;color:var(--primary);border-color:var(--primary)}
+    .section{padding:20px}
+    .section h2{font-size:20px;margin:0 0 10px 0}
+    .grid{display:grid;gap:12px}
+    @media(min-width:720px){.grid{grid-template-columns:repeat(3,1fr)}}
+    .pill{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px dashed var(--border);padding:12px;border-radius:12px}
+    .pill b{color:var(--primary-600)}
+    form{display:grid;gap:12px;margin-top:8px}
+    label{font-size:14px;color:var(--muted)}
+    input,select,textarea{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--border);background:#fff;font-size:16px}
+    .disclaimer{font-size:12px;color:#9ca3af;margin-top:8px}
+    .divider{height:1px;background:var(--border);margin:16px 0}
+    .footer{font-size:12px;color:#9ca3af;padding:16px;text-align:center}
+    .kicker{font-size:13px;color:#9ca3af;margin-top:8px}
+    .caps{letter-spacing:.12em;text-transform:uppercase;font-weight:700;font-size:12px;color:#9ca3af}
+    .success{display:none;padding:14px;border:1px solid #c6f6d5;background:#ecfdf5;color:#065f46;border-radius:12px;margin-top:10px}
+  </style>
+</head>
+<body>
+  <header class="container hero card">
+    <span class="badge">港澳專用｜繁體版</span>
+    <h1>善靈師姐｜姻緣命理館</h1>
+    <p class="sub">輸入基本資訊，獲取你的姻緣趨勢與「相合指引」。專注港澳用戶，提供私訊一對一諮詢。</p>
+    <div class="hero-visual">
+      <img src="/hero.webp" alt="善靈師姐 首屏圖" width="1200" height="675" fetchpriority="high">
+    </div>
+    <div class="cta-row">
+      <a class="btn" href="#" onclick="openMessenger();return false;">私訊 Messenger 立即測算</a>
+      <a class="btn secondary" href="#form">免費簡測（先填資料）</a>
+    </div>
+    <p class="kicker">提示：如你使用 WhatsApp，更可先私訊後再加 WhatsApp 深聊。</p>
+  </header>
+
+  <main class="container card">
+    <section class="section">
+      <div class="caps">服務內容</div>
+      <h2>三大方向｜為你定制分析</h2>
+      <div class="grid">
+        <div class="pill"><b>姻緣趨勢</b>：正緣大概何時出現？如何把握關鍵月份？</div>
+        <div class="pill"><b>相合指引</b>：生肖相合/相沖、個性互補，避免錯配少走彎路。</div>
+        <div class="pill"><b>關係修復</b>：反覆冷淡、拉扯不定？評估復合機會與改善建議。</div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="form" class="section">
+      <div class="caps">免費簡測</div>
+      <h2>留下資料｜先獲初步分析</h2>
+      <form id="leadForm">
+        <div>
+          <label for="name">姓名（必填）</label>
+          <input id="name" name="name" required placeholder="例：陳小姐 / Alex">
+        </div>
+        <div>
+          <label for="birth">出生日期（陽曆，必填）</label>
+          <input id="birth" name="birth" type="date" required>
+        </div>
+        <div>
+          <label for="gender">性別（可選）</label>
+          <select id="gender" name="gender">
+            <option value="">選擇</option>
+            <option>女</option>
+            <option>男</option>
+            <option>其他/不便透露</option>
+          </select>
+        </div>
+        <div>
+          <label for="topic">想了解的重點（可選）</label>
+          <select id="topic" name="topic">
+            <option>姻緣趨勢</option>
+            <option>相合指引</option>
+            <option>關係修復</option>
+            <option>綜合建議</option>
+          </select>
+        </div>
+        <div>
+          <label for="contact">聯絡方式（建議留 WhatsApp）</label>
+          <input id="contact" name="contact" placeholder="例：+852 6XXX XXXX / +853 6XXX XXXX / Messenger 昵稱">
+        </div>
+        <div>
+          <button class="btn" type="submit">提交資料｜獲取初步分析</button>
+        </div>
+        <div id="success" class="success">提交成功！我們已收到資料，點擊下方按鈕與師姐對接👇</div>
+        <div id="nextAction" style="display:none;margin-top:10px">
+          <a class="btn" href="#" onclick="openMessenger();return false;">打開 Messenger 與師姐聊天</a>
+        </div>
+        <p class="disclaimer">* 本服務屬諮詢性質，僅供參考，不作任何結果之保證。所有個人資料僅用於溝通與測算，遵守隱私政策。</p>
+      </form>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="privacy">
+      <div class="caps">隱私政策</div>
+      <h2>隱私政策（摘要）</h2>
+      <p>我們僅在提供測算與溝通所需的範圍內收集與使用你的資訊（如姓名、出生日期、聯繫方式）。資料不會出售給第三方，亦不作與服務無關的用途。若需刪除或查詢個人資料，請私訊我們。</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © <span id="y"></span> 善靈師姐（姻緣命理館） · <a href="#privacy">隱私政策</a> · <a href="#" onclick="openMessenger();return false;">Messenger 私訊</a>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent=new Date().getFullYear();
+
+    const PAGE_ID = "852947317895658";
+    function openMessenger() {
+      const params = new URLSearchParams(window.location.search);
+      params.set('ref', params.get('ref') || 'lp_hk');
+      const fallback = `https://m.me/${PAGE_ID}?${params.toString()}`;
+      const scheme = `fb-messenger://user-thread/${PAGE_ID}`;
+      const start = Date.now();
+      window.location.href = scheme;
+      setTimeout(() => {
+        if (Date.now() - start < 1600) window.location.href = fallback;
+      }, 1000);
+    }
+
+    const API_ENDPOINT = "/api/submit";
+    document.getElementById('leadForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        name:     document.getElementById('name').value.trim(),
+        birth:    document.getElementById('birth').value,
+        gender:   document.getElementById('gender').value,
+        topic:    document.getElementById('topic').value,
+        contact:  document.getElementById('contact').value.trim(),
+        utm:      Object.fromEntries(new URLSearchParams(location.search)),
+        url:      location.href,
+        ua:       navigator.userAgent
+      };
+      try {
+        const res = await fetch(API_ENDPOINT, {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify(data)
+        });
+        if (!res.ok) throw new Error(await res.text());
+        document.getElementById('success').style.display = 'block';
+        document.getElementById('nextAction').style.display = 'block';
+        e.target.reset();
+      } catch(err) {
+        alert('提交失敗，請稍後再試或直接點擊上方按鈕私訊。');
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>
