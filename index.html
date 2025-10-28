@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>善靈師姐（姻緣命理館）｜港澳專用落地頁</title>
   <meta name="description" content="輸入姓名與出生資訊，獲取你的姻緣趨勢與相合指引。善靈師姐為你定制分析，私訊立即諮詢。">
   <meta name="format-detection" content="telephone=no">
@@ -11,29 +11,55 @@
       --bg:#fff7fb; --primary:#e73a9e; --primary-600:#c62983;
       --ink:#1f2937; --muted:#6b7280; --card:#ffffff;
       --border:#f1e5ee; --accent:#ffecf6;
+      --hero-mvh:72; /* 移動端 hero 占屏高度（60–85 可調） */
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
-      font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC","Segoe UI",Roboto,Arial,"Microsoft JhengHei",sans-serif;line-height:1.6}
+      font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC","Segoe UI",Roboto,Arial,"Microsoft JhengHei",sans-serif;line-height:1.6;overflow-x:hidden;}
     a{color:var(--primary);text-decoration:none}
     img{max-width:100%;display:block}
+
     .container{max-width:960px;margin:0 auto;padding:16px}
     .card{background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 8px 24px rgba(231,58,158,.08);overflow:hidden}
-    .hero{position:relative;padding:28px 20px;background:linear-gradient(180deg,#fff0f7,rgba(255,255,255,0));}
+
+    .hero{
+      position:relative;
+      padding: max(16px, env(safe-area-inset-top)) 0 20px;
+      background:linear-gradient(180deg,#fff0f7,rgba(255,255,255,0));
+    }
+    .inner{padding:0 20px}
     .badge{display:inline-block;padding:6px 12px;border-radius:999px;background:var(--accent);color:var(--primary-600);font-weight:600;font-size:13px;letter-spacing:.4px}
     h1{font-size:28px;line-height:1.25;margin:12px 0 8px 0}
     .sub{color:var(--muted);font-size:15px;margin-top:4px}
-    .hero-visual{margin-top:16px;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+
+    /* ✅ 自適應 hero：桌面橫圖，移動竪圖鋪滿，均 cover 居中 */
+    .hero-visual{margin-top:16px;border-radius:12px;overflow:hidden;border:1px solid var(--border);
+      aspect-ratio: 16 / 9; /* 桌面比例 */
+    }
+    .hero-visual > img{width:100%;height:100%;object-fit:cover;object-position:center;}
+    @media (max-width: 640px){
+      .container.hero.card{border-radius:0}
+      .inner{padding:0}
+      .hero-visual{
+        margin:12px 0 0 0;border-radius:0;border:0;
+        aspect-ratio: 9 / 16;                 /* 竪圖比例 */
+        height: calc(var(--hero-mvh) * 1vh);  /* 占屏高 */
+        max-height: 820px;width:100vw;
+      }
+    }
+
     .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
     .btn{flex:1 1 240px;display:inline-flex;align-items:center;justify-content:center;padding:14px 18px;border-radius:12px;border:1px solid var(--primary);background:var(--primary);color:#fff;font-weight:700;font-size:16px;transition:.2s;cursor:pointer}
     .btn:hover{filter:brightness(.97)}
     .btn.secondary{background:#fff;color:var(--primary);border-color:var(--primary)}
+
     .section{padding:20px}
     .section h2{font-size:20px;margin:0 0 10px 0}
     .grid{display:grid;gap:12px}
     @media(min-width:720px){.grid{grid-template-columns:repeat(3,1fr)}}
     .pill{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px dashed var(--border);padding:12px;border-radius:12px}
     .pill b{color:var(--primary-600)}
+
     form{display:grid;gap:12px;margin-top:8px}
     label{font-size:14px;color:var(--muted)}
     input,select,textarea{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--border);background:#fff;font-size:16px}
@@ -47,17 +73,24 @@
 </head>
 <body>
   <header class="container hero card">
-    <span class="badge">港澳專用｜繁體版</span>
-    <h1>善靈師姐｜姻緣命理館</h1>
-    <p class="sub">輸入基本資訊，獲取你的姻緣趨勢與「相合指引」。專注港澳用戶，提供私訊一對一諮詢。</p>
+    <div class="inner">
+      <span class="badge">港澳專用｜繁體版</span>
+      <h1>善靈師姐｜姻緣命理館</h1>
+      <p class="sub">輸入基本資訊，獲取你的姻緣趨勢與「相合指引」。專注港澳用戶，提供私訊一對一諮詢。</p>
+    </div>
+
+    <!-- ✅ 自適應 hero 圖：保持 /hero.webp，不改文件名 -->
     <div class="hero-visual">
-      <img src="/hero.webp" alt="善靈師姐 首屏圖" width="1200" height="675" fetchpriority="high">
+      <img src="/hero.webp" alt="善靈師姐 首屏圖" loading="eager" fetchpriority="high">
     </div>
-    <div class="cta-row">
-      <a class="btn" href="#" onclick="openMessenger();return false;">私訊 Messenger 立即測算</a>
-      <a class="btn secondary" href="#form">免費簡測（先填資料）</a>
+
+    <div class="inner">
+      <div class="cta-row">
+        <a class="btn" href="#" onclick="openMessenger();return false;">私訊 Messenger 立即測算</a>
+        <a class="btn secondary" href="#form">免費簡測（先填資料）</a>
+      </div>
+      <p class="kicker">提示：如你使用 WhatsApp，更可先私訊後再加 WhatsApp 深聊。</p>
     </div>
-    <p class="kicker">提示：如你使用 WhatsApp，更可先私訊後再加 WhatsApp 深聊。</p>
   </header>
 
   <main class="container card">
@@ -132,21 +165,22 @@
   </footer>
 
   <script>
-    document.getElementById('y').textContent=new Date().getFullYear();
+    // 年份
+    document.getElementById('y').textContent = new Date().getFullYear();
 
+    // ✅ Messenger 穩定跳轉
     const PAGE_ID = "852947317895658";
     function openMessenger() {
-      const params = new URLSearchParams(window.location.search);
+      const params = new URLSearchParams(location.search);
       params.set('ref', params.get('ref') || 'lp_hk');
-      const fallback = `https://m.me/${PAGE_ID}?${params.toString()}`;
       const scheme = `fb-messenger://user-thread/${PAGE_ID}`;
-      const start = Date.now();
-      window.location.href = scheme;
-      setTimeout(() => {
-        if (Date.now() - start < 1600) window.location.href = fallback;
-      }, 1000);
+      const fallback = `https://m.me/${PAGE_ID}?` + params.toString();
+      const t = Date.now();
+      location.href = scheme;
+      setTimeout(() => { if (Date.now() - t < 1600) location.href = fallback; }, 1000);
     }
 
+    // 表單提交
     const API_ENDPOINT = "/api/submit";
     document.getElementById('leadForm').addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -161,16 +195,16 @@
         ua:       navigator.userAgent
       };
       try {
-        const res = await fetch(API_ENDPOINT, {
+        const r = await fetch(API_ENDPOINT, {
           method: 'POST',
           headers: {'Content-Type':'application/json'},
           body: JSON.stringify(data)
         });
-        if (!res.ok) throw new Error(await res.text());
+        if (!r.ok) throw new Error(await r.text());
         document.getElementById('success').style.display = 'block';
         document.getElementById('nextAction').style.display = 'block';
         e.target.reset();
-      } catch(err) {
+      } catch (err) {
         alert('提交失敗，請稍後再試或直接點擊上方按鈕私訊。');
         console.error(err);
       }
