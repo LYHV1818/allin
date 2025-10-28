@@ -2,21 +2,24 @@
 import { google } from 'googleapis';
 
 export default async function handler(req, res) {
+  // CORS（如僅本域可省略為同源）
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
   if (req.method === 'OPTIONS') return res.status(204).end();
   if (req.method !== 'POST') return res.status(405).send('Method Not Allowed');
 
   try {
     const { name, birth, gender, topic, contact, utm = {}, url = '', ua = '' } = req.body || {};
-    if (!name || !birth) return res.status(400).json({ ok:false, message:'缺少必填字段' });
+    if (!name || !birth) return res.status(400).json({ ok: false, message: '缺少必填字段' });
+
+    // 將單行私鑰中的 \n 轉為真正換行
+    const privateKey = (process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY || '').replace(/\\n/g, '\n');
 
     const auth = new google.auth.JWT({
       email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-      key: (process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY || '').replace(/\n/g, '\n').replace('\\n','\n'),
-      scopes: ['https://www.googleapis.com/auth/spreadsheets']
+      key: privateKey,
+      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
     });
 
     const sheets = google.sheets({ version: 'v4', auth });
@@ -38,9 +41,9 @@ export default async function handler(req, res) {
       requestBody: { values }
     });
 
-    return res.status(200).json({ ok:true });
+    return res.status(200).json({ ok: true });
   } catch (e) {
-    console.error('Submit error:', e);
-    return res.status(500).json({ ok:false, message: 'Server Error' });
+    console.error('Submit error:', e?.response?.data || e?.message || e);
+    return res.status(500).json({ ok: false, message: 'Server Error' });
   }
 }
